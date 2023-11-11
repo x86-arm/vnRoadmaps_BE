@@ -4,8 +4,8 @@
   "description": "",
   "main": "dist/server",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon --exec ts-node -r tsconfig-paths/register ./src/server.ts",
-    "production": "cross-env NODE_ENV=production nodemon --exec ts-node -r tsconfig-paths/register ./src/server.ts",
+    "dev": "cross-env NODE_ENV=development nodemon --exec ts-node --transpiler sucrase/ts-node-plugin -r tsconfig-paths/register ./src/server.ts",
+    "production": "cross-env NODE_ENV=production nodemon --exec ts-node --transpiler sucrase/ts-node-plugin -r tsconfig-paths/register ./src/server.ts",
     "build": "tsc && npx tsc-alias",
     "start": "cross-env NODE_PATH=./dist node './dist/server.js' --watch './dist'",
     "formart": "prettier ./src --write"
@@ -32,6 +32,7 @@
     "morgan": "^1.10.0",
     "nodemon": "^3.0.1",
     "rate-limiter-flexible": "^2.4.2",
+    "sucrase": "^3.34.0",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.1.6",

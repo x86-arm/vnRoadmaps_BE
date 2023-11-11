@@ -19,7 +19,7 @@ const app = express();
 
 const corsOption = {
   credentials: true,
-  origin: ['https://yourdomain.com', 'http://localhost:3000', "http://127.0.0.1:5500"],
+  origin: ['https://yourdomain.com', 'http://localhost:5173', "http://127.0.0.1:5500"],
 };
 
 app.use(cors(corsOption));
@@ -76,7 +76,7 @@ function initializeSignVerify() {
 initializeSecurity();
 initializeMiddlewares();
 initializeApiLimiter();
-initializeSignVerify();
+// initializeSignVerify();
 app.use(routers);
 initializeErrorHandler();
 
