@@ -1,0 +1,12 @@
+# Ignore artifacts:
+build
+coverage
+
+# Ignore all node_modules and git files:
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+**/.next
+.github/
+README.md
