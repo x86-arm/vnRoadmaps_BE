@@ -2,7 +2,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { HttpException, StatusCode } from 'exceptions';
-import { loginValidate, usersValidate } from 'helpers/validation';
+import { forgotPasswordValidate, loginValidate, recoverPasswordValidate, usersValidate } from 'helpers/validation';
 import UserModel from 'models/schemas/User';
 import {
   signAccessToken,
@@ -11,10 +11,16 @@ import {
 } from 'helpers/jwt';
 import { RefreshTokenPayload } from 'types/auth';
 import configs from 'configs';
+import formData from 'form-data';
+import Mailgun from 'mailgun.js';
+import { clear, get, set } from 'resources/redis';
+import { uuid } from "uuidv4"
+import bcrypt from 'bcrypt';
+
 
 export const signup = async (req: Request, next: NextFunction) => {
   const { error } = usersValidate(req.body);
-  const { username } = req.body;
+  const { email } = req.body;
 
   try {
     if (error)
@@ -26,7 +32,7 @@ export const signup = async (req: Request, next: NextFunction) => {
       );
 
     const isExits = await UserModel.findOne({
-      username,
+      email,
     });
 
     if (isExits) {
@@ -51,12 +57,24 @@ export const signup = async (req: Request, next: NextFunction) => {
   }
 };
 
+
+export const logout = async (req: Request, next: NextFunction) => {
+  try {
+    await clear(req.user.userID)
+    return {
+      message: "Đăng xuất thành công!"
+    };
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const login = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
   try {
     const { error } = loginValidate(req.body);
@@ -70,18 +88,18 @@ export const login = async (
       );
     }
 
-    if (!username || !password) {
+    if (!email || !password) {
       return next(
         new HttpException(
           'MissingError',
           StatusCode.BadRequest.status,
-          'Missing username or password',
+          'Missing email or password',
           StatusCode.BadRequest.name
         )
       );
     }
 
-    const lockedUser = await UserModel.findOne({ username });
+    const lockedUser = await UserModel.findOne({ email });
 
     if (lockedUser?.is_deleted === true) {
       throw new HttpException(
@@ -111,7 +129,7 @@ export const login = async (
       };
     }
 
-    const user = await UserModel.findOne({ username });
+    const user = await UserModel.findOne({ email });
     if (!user) {
       throw new HttpException(
         'NotFoundError',
@@ -153,6 +171,125 @@ export const login = async (
     next(error);
   }
 };
+
+export const forgotPassword = async (
+  req: Request,
+  next: NextFunction
+) => {
+  const { email } = req.body;
+
+  try {
+    const { error } = forgotPasswordValidate(req.body);
+
+    if (error) {
+      throw new HttpException(
+        'ValidateError',
+        StatusCode.BadRequest.status,
+        error.details[0].message.toString(),
+        StatusCode.BadRequest.name
+      );
+    }
+
+    if (!email) {
+      return next(
+        new HttpException(
+          'MissingError',
+          StatusCode.BadRequest.status,
+          'Missing email',
+          StatusCode.BadRequest.name
+        )
+      );
+    }
+
+    const lockedUser = await UserModel.findOne({ email });
+
+    if (lockedUser?.is_deleted === true) {
+      throw new HttpException(
+        'LockedError',
+        StatusCode.NotFound.status,
+        'Your account has been locked',
+        StatusCode.NotFound.name
+      );
+    }
+
+    if (lockedUser?.is_enabled === false) {
+      return {
+        message: 'Your account has been disabled',
+        statusCode: 'DISABLED',
+      };
+    }
+
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      throw new HttpException(
+        'NotFoundError',
+        StatusCode.NotFound.status,
+        'User not registered!',
+        StatusCode.NotFound.name
+      );
+    }
+
+    const clientOptions = {
+      username: 'DuongNamPhong', key: '602ad1ff291a27b28b80e48a558f5c48-8c9e82ec-a2784360', url: "https://api.eu.mailgun.net"
+    }
+    const mailgun = new Mailgun(formData);
+    const mailgunClient = mailgun.client(clientOptions);
+    const forgotPasswordRequestID = uuid()
+
+    await mailgunClient.messages.create('vnroadmaps.com', {
+      from: "vnRoadmaps <noreply@vnroadmaps.com>",
+      to: [user.email],
+      subject: "Lấy lại mật khẩu",
+      html: `Liên kết lấy lại mật khẩu của bạn là: <b><a href="http://localhost:5173/recoverPassword?reqID=${forgotPasswordRequestID.toString()}">Nhấp vào đây</a></b><br>Liên kết có hiệu lực trong 60 phút`,
+    })
+
+    await set("forgotPassword:" + forgotPasswordRequestID, user._id, 3600000)
+
+    return {
+      message: "Gửi thành công link lấy lại mật khẩu đến email!"
+    };
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const recoverPassword = async (
+  req: Request,
+  next: NextFunction
+) => {
+  const { reqID, newPassword } = req.body;
+  try {
+    const { error } = recoverPasswordValidate(req.body);
+
+    if (error) {
+      throw new HttpException(
+        'ValidateError',
+        StatusCode.BadRequest.status,
+        error.details[0].message.toString(),
+        StatusCode.BadRequest.name
+      );
+    }
+    const forgotPasswordRequestID = await get("forgotPassword:" + reqID)
+    if (!forgotPasswordRequestID) throw new HttpException(
+      'NotFoundError',
+      StatusCode.NotFound.status,
+      'reqID không tồn tại!',
+      StatusCode.NotFound.name
+    );
+    console.log(newPassword)
+
+    const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(newPassword, salt);
+
+    const user = await UserModel.findByIdAndUpdate(forgotPasswordRequestID, { password: hashPassword })
+
+    await clear("forgotPassword:" + reqID)
+    return user
+  } catch (error) {
+    next(error)
+  }
+
+}
 
 export const refreshToken = async (req: Request, next: NextFunction) => {
   const { refreshToken } = req.body;

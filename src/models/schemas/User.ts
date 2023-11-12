@@ -7,7 +7,7 @@ import User from '../types/User';
 const UserSchema = new Schema<User>(
   {
     fullname: { type: String, required: true },
-    username: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     avatar: { type: String, default: '' },
     is_enabled: { type: Boolean, default: true },
@@ -20,7 +20,7 @@ const UserSchema = new Schema<User>(
   }
 );
 
-UserSchema.index({ fullname: 'text', username: 'text' });
+UserSchema.index({ fullname: 'text', email: 'text' });
 
 UserSchema.pre(
   'save',
@@ -35,6 +35,7 @@ UserSchema.pre(
     next();
   }
 );
+
 
 UserSchema.method(
   'isCheckPassword',

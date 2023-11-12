@@ -9,7 +9,7 @@ export default interface User extends Document {
   avatar?: string;
   bio?: string;
   fullname: string;
-  username: string;
+  email: string;
   password: string;
   is_enabled?: boolean;
   is_deleted?: boolean;

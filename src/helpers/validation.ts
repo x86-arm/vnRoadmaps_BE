@@ -4,7 +4,7 @@ import { Request } from 'express';
 export const usersValidate = (body: Request) => {
   const schema = Joi.object({
     fullname: Joi.string().required(),
-    username: Joi.string().min(5).max(128).required(),
+    email: Joi.string().email().required(),
     password: Joi.string().min(5).max(128).required(),
     avatar: Joi.string(),
     bio: Joi.string(),
@@ -24,8 +24,25 @@ export const usersValidate = (body: Request) => {
 
 export const loginValidate = (body: Request) => {
   const schema = Joi.object({
-    username: Joi.string().min(5).max(128).required(),
+    email: Joi.string().email().required(),
     password: Joi.string().min(5).max(128).required(),
+  });
+
+  return schema.validate(body);
+};
+
+export const forgotPasswordValidate = (body: Request) => {
+  const schema = Joi.object({
+    email: Joi.string().email().required(),
+  });
+
+  return schema.validate(body);
+};
+
+export const recoverPasswordValidate = (body: Request) => {
+  const schema = Joi.object({
+    reqID: Joi.string().min(5).max(128).required(),
+    newPassword: Joi.string().min(5).max(128).required(),
   });
 
   return schema.validate(body);
