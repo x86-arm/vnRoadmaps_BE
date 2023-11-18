@@ -12,7 +12,7 @@ const rateLimiter = new RateLimiterMemory({
 
 const apiRateLimiter = (req: Request, res: Response, next: NextFunction) => {
   rateLimiter
-    .consume(req.clientIp || req.ip)
+    .consume(req.clientIp ?? req.ip ?? '')
     .then((rateLimiterRes: RateLimiterRes) => {
       res.set({
         'Retry-After': rateLimiterRes.msBeforeNext / 1000,
