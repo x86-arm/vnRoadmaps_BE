@@ -11,6 +11,11 @@ export default {
   env: process.env.NODE_ENV,
   port: process.env.PORT,
   requestBodySignSecret: process.env.REQUEST_BODY_SIGN_SECRET,
+  domain: process.env.DOMAIN,
+  mailgun: {
+    username: process.env.MAILGUN_USERNAME || "",
+    secretKey: process.env.MAILGUN_SECRETKEY || "",
+  },
   rateLimit: {
     limitPerSeconds: process.env.LIMIT_PER_SECONDS || 3,
     limitRequestsPerSeconds: process.env.LIMIT_REQUESTS_PER_SECONDS || 20,

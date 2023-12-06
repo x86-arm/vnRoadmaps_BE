@@ -1,19 +1,3 @@
-export const provincesSlug = [
-  { slug: "ha-noi", name: "Thành phố Hà Nội" },
-  { slug: "ho-chi-minh", name: "Thành phố Hồ Chí Minh" },
-  { slug: "da-nang", name: "Thành phố Đà Nẵng" },
-  { slug: "hoi-an", name: "Thành phố Hội An" },
-  { slug: "hue", name: "Thành phố Huế" },
-  { slug: "hai-phong", name: "Thành phố Hải Phòng" },
-  { slug: "nha-trang", name: "Thành phố Nha Trang" },
-  { slug: "phu-quoc", name: "Đảo Phú Quốc" },
-  { slug: "vung-tau", name: "Thành phố Vũng Tàu" },
-  // { slug: "can-tho", name: "Thành phố Cần Thơ" },
-  // { slug: "hai-duong", name: "Thành phố Hải Dương" },
-  // { slug: "quang-ninh", name: "Tỉnh Quảng Ninh" },
-  // { slug: "ha-long", name: "Thành phố Hạ Long" },
-];
-
 export const provinces = [
   {
     name: "Thành phố Hà Nội",
@@ -48,7 +32,7 @@ export const provinces = [
         type: "Khu phố cổ",
         mapsUrl: "https://goo.gl/maps/HUQyqQqH5DYDeGA49",
         image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Ph%E1%BB%91_T%E1%BA%A1_Hi%E1%BB%87n_-_NKS.jpg/1200px-Ph%E1%BB%91_T%E1%BA%A1_Hi%E1%BB%87n_-_NKS.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/c/c7/Ph%E1%BB%91_T%E1%BA%A1_Hi%E1%BB%87n_-_NKS.jpg",
         price: 0,
         description:
           "Phố cổ Hà Nội là một khu phố cổ độc đáo với kiến trúc truyền thống, các cửa hàng và nhà hàng phục vụ đặc sản địa phương.",
@@ -153,7 +137,7 @@ export const provinces = [
         type: "Di tích lịch sử",
         mapsUrl: "https://goo.gl/maps/dn7ZMf31R3cyT5sV6",
         image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Cau_Nhat_Ban.jpg/1200px-Cau_Nhat_Ban.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/c/c1/Cau_Nhat_Ban.jpg",
         price: 12000,
         description:
           "Chùa Cầu là một di tích lịch sử nổi tiếng và biểu tượng của Hội An, được xây dựng trên một cây cầu gỗ bắc qua sông.",
@@ -194,7 +178,7 @@ export const provinces = [
         type: "Di tích lịch sử",
         mapsUrl: "https://goo.gl/maps/s7eVz4MPM3QJ8cPg9",
         image:
-          "https://img.nhandan.com.vn/Files/Images/2021/10/27/NgoMon_Hue-1635323560819.jpeg",
+          "https://upload.wikimedia.org/wikipedia/commons/c/cc/Ngomon2.jpg",
         price: 150000,
         description:
           "Cố đô Huế là một di tích lịch sử quan trọng, gồm cung điện, thành cổ và các công trình kiến trúc độc đáo.",
@@ -228,7 +212,7 @@ export const provinces = [
       "Hải Phòng là một thành phố cảng quan trọng của Việt Nam, nằm ở vịnh Bắc Bộ. Thành phố này có các bãi biển đẹp, đền đài lịch sử và một phong cách văn hóa độc đáo.",
     mapsUrl: "https://goo.gl/maps/ScPpPTfyPk5AtFZx5",
     image:
-      "https://cdnimg.vietnamplus.vn/uploaded/xpcwvovt/2022_09_02/hai_phong.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/4/4c/Hai_Phong_City_2017.png",
     thingsToDo: [
       {
         name: "Bãi biển Cát Bà",
@@ -275,7 +259,7 @@ export const provinces = [
         type: "Bãi biển",
         mapsUrl: "https://goo.gl/maps/Vkm6GPy6U1AdfJ7r5",
         image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Nha_Trang.jpg/1200px-Nha_Trang.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/9/9c/Nha_Trang_%2C_Vietnam_-_panoramio_%2835%29.jpg",
         price: 0,
         description:
           "Bãi biển Nha Trang là một bãi biển nổi tiếng với cát trắng và nước biển trong xanh, thu hút du khách từ khắp nơi.",
@@ -285,7 +269,7 @@ export const provinces = [
         type: "Công viên giải trí",
         mapsUrl: "https://goo.gl/maps/KtR5KTckz2WyYQw6A",
         image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Vinpearl_Land_logo_2021.png/800px-Vinpearl_Land_logo_2021.png",
+          "https://upload.wikimedia.org/wikipedia/commons/f/f1/Vinpearl_land.jpg",
         price: 800000,
         description:
           "Vinpearl Land Nha Trang là một công viên giải trí hàng đầu với các trò chơi, khu vui chơi và nhiều hoạt động thú vị.",
@@ -295,7 +279,7 @@ export const provinces = [
         type: "Di tích tôn giáo",
         mapsUrl: "https://goo.gl/maps/FTJdntvgKv9Mxmdy9",
         image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Long_Son_Pagoda-38.jpg/1200px-Long_Son_Pagoda-38.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/2/25/Chua_Long_Son%2C_Nha_Trang.jpg",
         price: 0,
         description:
           "Chùa Long Sơn là một ngôi chùa lớn với tượng Phật cao và cảnh quan đẹp, nằm trên một ngọn đồi ở Nha Trang.",
@@ -309,14 +293,14 @@ export const provinces = [
       "Phú Quốc là một đảo nổi tiếng ở phía Nam Việt Nam, nằm gần biên giới Campuchia. Đảo này có bãi biển tuyệt đẹp, rừng nhiệt đới và khu du lịch phát triển.",
     mapsUrl: "https://goo.gl/maps/ovL2DFDo4bSawFjJ9",
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/PhuQuoc_Vietnam_134.jpg/1200px-PhuQuoc_Vietnam_134.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/6/6e/Bai-sao-phu-quoc-tuonglamphotos.jpg",
     thingsToDo: [
       {
         name: "Bãi Sao",
         type: "Bãi biển",
         mapsUrl: "https://goo.gl/maps/Kd1JLaZCKp6HHrGr6",
         image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/B%C3%A3i_Sao_Ph%C3%BA_Qu%E1%BB%91c_1.jpg/1200px-B%C3%A3i_Sao_Ph%C3%BA_Qu%E1%BB%91c_1.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/6/6e/Bai-sao-phu-quoc-tuonglamphotos.jpg",
         price: 0,
         description:
           "Bãi Sao là một bãi biển nổi tiếng với cát trắng mịn và nước biển trong xanh, thuộc đảo Phú Quốc.",
@@ -326,7 +310,7 @@ export const provinces = [
         type: "Làng chài",
         mapsUrl: "https://goo.gl/maps/t4uYSjry2TQH5zzW7",
         image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Cua_Lap_1.jpg/1200px-Cua_Lap_1.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/e/e2/C%E1%BA%A7u_B%C3%A3i_Ch%C3%A1y2.JPG",
         price: 0,
         description:
           "Cửa Lục Fishing Village là một ngôi làng chài truyền thống với những ngôi nhà gỗ trên nước, tạo nên cảnh quan độc đáo.",
@@ -336,7 +320,7 @@ export const provinces = [
         type: "Vườn quốc gia",
         mapsUrl: "https://goo.gl/maps/hQ3E6sEdo8vQZvnS9",
         image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Phu_Quoc_National_Park.JPG/1200px-Phu_Quoc_National_Park.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/d/de/Phongnhakebang11.jpg",
         price: 30000,
         description:
           "Vườn Quốc gia Phú Quốc là một khu vực bảo tồn thiên nhiên, với rừng nhiệt đới, động vật và cây cỏ đa dạng.",
@@ -350,14 +334,14 @@ export const provinces = [
       "Vũng Tàu là một thành phố biển nổi tiếng, nằm ở miền Nam Việt Nam. Thành phố này có các bãi biển đẹp, đồi núi và lịch sử quan trọng trong thời kỳ chiến tranh.",
     mapsUrl: "https://goo.gl/maps/nHrNz6hBCUTcBzBr8",
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Vung_Tau_city.jpg/1200px-Vung_Tau_city.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/8/83/B%E1%BB%9D_bi%E1%BB%83n_V%C5%A9ng_T%C3%A0u.JPG",
     thingsToDo: [
       {
         name: "Bãi Trước",
         type: "Bãi biển",
         mapsUrl: "https://goo.gl/maps/nS7Gt93kVLTTnV9r6",
         image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Back_Beach_in_Vung_Tau.jpg/1200px-Back_Beach_in_Vung_Tau.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/8/80/Cong_vien_bai_truoc-Ph%C6%B0%E1%BB%9Dng_1%2C_tp._V%C5%A9ng_T%C3%A0u%2C_B%C3%A0_R%E1%BB%8Ba_-_V%C5%A9ng_T%C3%A0u%2C_Vi%E1%BB%87t_Nam_-_panoramio_%282%29.jpg",
         price: 0,
         description:
           "Bãi Trước là một bãi biển nổi tiếng và sôi động ở Vũng Tàu, thu hút nhiều du khách đến tắm biển và thưởng thức các món hải sản tươi ngon.",
@@ -367,7 +351,7 @@ export const provinces = [
         type: "Di tích tôn giáo",
         mapsUrl: "https://goo.gl/maps/2EZQ2YnBY1H6nqLz5",
         image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Buddha_Statue_Thich_Ca_Ph%C3%A1t_%C4%90%C3%A0i_2.jpg/1200px-Buddha_Statue_Thich_Ca_Ph%C3%A1t_%C4%90%C3%A0i_2.jpg",
+          "https://upload.wikimedia.org/wikipedia/commons/7/78/Buddha_in_Vung_Tau.JPG",
         price: 0,
         description:
           "Thích Ca Phật Đài là một ngôi đài Phật lớn và được tôn vinh, nằm trên một ngọn đồi ở Vũng Tàu.",
@@ -377,7 +361,7 @@ export const provinces = [
         type: "Di tích lịch sử",
         mapsUrl: "https://goo.gl/maps/jjce7XDFwtSKF5AH8",
         image:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Vung_Tau_Lighthouse_2.JPG/1200px-Vung_Tau_Lighthouse_2.JPG",
+          "https://upload.wikimedia.org/wikipedia/commons/0/03/H%E1%BA%A3i_%C4%91%C4%83ng_V%C5%A9ng_T%C3%A0u.JPG",
         price: 10000,
         description:
           "Ngọn hải đăng Vũng Tàu là một ngọn hải đăng lịch sử và là biểu tượng của thành phố Vũng Tàu.",

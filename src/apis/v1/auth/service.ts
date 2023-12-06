@@ -11,8 +11,6 @@ import {
 } from 'helpers/jwt';
 import { RefreshTokenPayload } from 'types/auth';
 import configs from 'configs';
-import formData from 'form-data';
-import Mailgun from 'mailgun.js';
 import { clear, get, set } from 'resources/redis';
 import { uuid } from "uuidv4"
 import bcrypt from 'bcrypt';
@@ -229,14 +227,11 @@ export const forgotPassword = async (
       );
     }
 
-    const clientOptions = {
-      username: 'DuongNamPhong', key: '602ad1ff291a27b28b80e48a558f5c48-8c9e82ec-a2784360', url: "https://api.eu.mailgun.net"
-    }
-    const mailgun = new Mailgun(formData);
-    const mailgunClient = mailgun.client(clientOptions);
     const forgotPasswordRequestID = uuid()
+    const global = globalThis as any
 
-    await mailgunClient.messages.create('vnroadmaps.com', {
+
+    await global.mailgunClient.messages.create('vnroadmaps.com', {
       from: "vnRoadmaps <noreply@vnroadmaps.com>",
       to: [user.email],
       subject: "Lấy lại mật khẩu",

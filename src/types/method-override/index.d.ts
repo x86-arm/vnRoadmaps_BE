@@ -1,4 +1,5 @@
 import express from 'express';
+import Mailgun from 'mailgun-js';
 
 declare global {
   namespace Express {
@@ -7,5 +8,11 @@ declare global {
       user: any;
       files: any;
     }
+  }
+}
+
+declare module NodeJS {
+  interface Global {
+    mailgunClient: any
   }
 }
