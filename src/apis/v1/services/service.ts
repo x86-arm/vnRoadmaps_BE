@@ -33,7 +33,7 @@ export const getProvince = async (req: Request, next: NextFunction) => {
 };
 export const getProvinceSlug = async (req: Request, next: NextFunction) => {
     try {
-        return provinces.map(({ image, thingsToDo, description, mapsUrl, ...keepAttrs }) => keepAttrs);
+        return provinces.map(({ thingsToDo, description, mapsUrl, ...keepAttrs }) => keepAttrs);
     } catch (error) {
         next(error);
     }

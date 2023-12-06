@@ -42,7 +42,7 @@ export const refreshToken = async (
   res: Response,
   next: NextFunction
 ): Promise<any> => {
-  const result = await service.refreshToken(req, next);
+  const result = await service.refreshToken(req, res, next);
   if (result) new ApiResponse(result, 'OK', 200, req.startTime).send(res);
 };
 export const logout = async (

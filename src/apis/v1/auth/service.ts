@@ -291,7 +291,7 @@ export const recoverPassword = async (
 
 }
 
-export const refreshToken = async (req: Request, next: NextFunction) => {
+export const refreshToken = async (req: Request, res: Response, next: NextFunction) => {
   const { refreshToken } = req.body;
   try {
     if (!refreshToken) {
@@ -308,6 +308,12 @@ export const refreshToken = async (req: Request, next: NextFunction) => {
     );
 
     const accessToken = await signAccessToken(payload.userID, payload.role);
+
+    res.cookie('accessToken', accessToken, {
+      maxAge: Number(configs.jwt.accessTokenExpireIn),
+      httpOnly: false,
+    });
+
     return {
       tokens: {
         accessToken,
